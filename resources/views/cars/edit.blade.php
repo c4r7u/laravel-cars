@@ -1,0 +1,55 @@
+@extends('layouts.app')
+
+@section('main_content')
+
+<div class="container">
+
+    <h2>Aggiorna i dati</h2>
+
+    {{-- Required fields --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('cars.update', ['car'=> $car->id]) }}" method="POST">
+        @csrf
+        @method('PUT')
+    
+        <div class="form-group">
+          <label for="brand">Brand</label>
+          <input type="text" class="form-control" name="brand" id="brand" value="{{ old('brand') ? old('brand') : $car->brand }}">
+        </div>
+    
+        <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" class="form-control" name="model" id="model" value="{{ old('model') ? old('model') : $car->model}}">
+        </div>
+    
+        <div class="form-group">
+            <label for="power">Power</label>
+            <input type="text" class="form-control" name="power" id="power" value="{{ old('power') ? old('power') : $car->power }}">
+        </div>
+    
+        <div class="form-group">
+            <label for="doors">Doors</label>
+            <input type="number" class="form-control" name="doors" id="doors"  value="{{ old('doors') ? old('doors') : $car->doors }}">
+        </div>
+    
+        <div class="form-group">
+            <label for="thumb">Thumb</label>
+            <input type="text" class="form-control" name="thumb" id="thumb"  value="{{ old('thumb') ? old('thumb') : $car->thumb }}">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Aggiorna</button>
+    
+    </form>
+</div>
+
+
+@endsection

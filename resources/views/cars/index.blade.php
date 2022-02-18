@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main_content')
+<div class="container">
     @forelse ($cars as $car)
         <div class="card m-3" style="width: 18rem;">
             <a href="{{route('cars.show' , ['car' => $car->id])}}">
@@ -13,4 +14,6 @@
     @empty
         <h1>Non ci sono macchine</h1>
     @endforelse
+
+</div>
 @endsection
