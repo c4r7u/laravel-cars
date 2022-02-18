@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Car;
 
 class CarController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * ! Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $cars = Car::all();
+        $data=[
+            'cars' => $cars
+        ];
+        return view('cars.index', $data);
     }
 
     /**
@@ -38,14 +43,19 @@ class CarController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * ! Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $car_to_show = Car::findOrFail($id);
+
+        $data =[
+            'car_to_show' => $car_to_show
+        ];
+        return view('cars.show', $data);
     }
 
     /**
