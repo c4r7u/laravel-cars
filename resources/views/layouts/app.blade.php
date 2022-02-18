@@ -9,14 +9,16 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-light bg-light">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="{{ route('cars.index') }}">Cars list</a>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link" href="{{ route('cars.index') }}">Cars List</a>
+                  <a class="nav-link btn btn-outline-primary" href="{{ route('cars.create') }}">Create Car</a>
+                </div>
+              </div>
             </div>
-            {{-- <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('cars.index') }}">Cars list</a>
-            </div> --}}
-          </nav>
+        </nav>
     </header>
 
     <main>
