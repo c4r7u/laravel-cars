@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
-    
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="{{ route('cars.index') }}">Cars list</a>
+            </div>
+            {{-- <div class="container-fluid">
+                <a class="navbar-brand" href="{{ route('cars.index') }}">Cars list</a>
+            </div> --}}
+          </nav>
+    </header>
+
+    <main>
+        @yield('main_content')
+    </main>
+
+    <footer>
+        <h1>Sono il footer</h1>
+    </footer>
 </body>
 </html>
