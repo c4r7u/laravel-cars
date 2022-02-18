@@ -28,7 +28,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create');
     }
 
     /**
@@ -39,7 +39,15 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $form_data = $request->all();
+
+       $request->validate($this->validation());
+
+       $new_car = new Car();
+       $new_car->fill($form_data);
+       $new_car->save();
+
+       return redirect()->route('cars.show', ['car' => $new_car->id]);
     }
 
     /**
@@ -90,5 +98,16 @@ class CarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function validation()
+    {
+        return [
+            'brand' => 'required|max:50',
+            'model' => 'required|max:50',
+            'power' => 'required|max:50',
+            'doors' => 'required',
+            'power' => 'required|max:150'
+        ];
     }
 }
