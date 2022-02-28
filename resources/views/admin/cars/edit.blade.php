@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    <form action="{{ route('cars.update', ['car'=> $car->id]) }}" method="POST">
+    <form action="{{ route('admin.cars.update', ['car'=> $car->id]) }}" method="POST">
         @csrf
         @method('PUT')
     

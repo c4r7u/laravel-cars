@@ -16,7 +16,7 @@
     @endif
     
     {{-- Form car creation --}}
-    <form action="{{ route('cars.store') }}" method="POST">
+    <form action="{{ route('admin.cars.store') }}" method="POST">
         @csrf
         @method('POST')
 

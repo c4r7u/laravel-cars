@@ -11,8 +11,8 @@
             <p class="card-text">Potenza: {{ $car_to_show->power }}</p>
             <p class="card-text">Numero di porte: {{ $car_to_show->doors }}</p>
         </div>
-        <a class="btn btn-primary" href="{{ route('cars.edit', ['car'=>$car_to_show->id]) }}">Modifica</a>
-        <form action="{{ route('cars.destroy', ['car'=> $car_to_show->id]) }}" method="post">
+        <a class="btn btn-primary" href="{{ route('admin.cars.edit', ['car'=>$car_to_show->id]) }}">Modifica</a>
+        <form action="{{ route('admin.cars.destroy', ['car'=> $car_to_show->id]) }}" method="post">
             @csrf
             @method('DELETE')
 

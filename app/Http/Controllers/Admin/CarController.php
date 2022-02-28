@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Car;
+use App\Http\Controllers\Controller;
 
 class CarController extends Controller
 {
@@ -18,7 +19,7 @@ class CarController extends Controller
         $data=[
             'cars' => $cars
         ];
-        return view('cars.index', $data);
+        return view('admin.cars.index', $data);
     }
 
     /**
@@ -28,7 +29,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('cars.create');
+        return view('admin.cars.create');
     }
 
     /**
@@ -47,7 +48,7 @@ class CarController extends Controller
        $new_car->fill($form_data);
        $new_car->save();
 
-       return redirect()->route('cars.show', ['car' => $new_car->id]);
+       return redirect()->route('admin.cars.show', ['car' => $new_car->id]);
     }
 
     /**
@@ -63,7 +64,7 @@ class CarController extends Controller
         $data =[
             'car_to_show' => $car_to_show
         ];
-        return view('cars.show', $data);
+        return view('admin.cars.show', $data);
     }
 
     /**
@@ -76,7 +77,7 @@ class CarController extends Controller
     {
         $car = Car::findOrFail($id);
 
-        return view('cars.edit', compact('car'));
+        return view('admin.cars.edit', compact('car'));
     }
 
     /**
@@ -94,7 +95,7 @@ class CarController extends Controller
         $car_to_update = Car::findOrFail($id);
         $car_to_update->update($form_data);
 
-        return redirect()->route('cars.show', ['car'=> $car_to_update->id]);
+        return redirect()->route('admin.cars.show', ['car'=> $car_to_update->id]);
 
     }
 
@@ -109,7 +110,7 @@ class CarController extends Controller
         $car_to_delete = Car::findOrFail($id);
         $car_to_delete->delete();
 
-        return redirect()->route('cars.index');
+        return redirect()->route('admin.cars.index');
     }
 
     protected function validation()
