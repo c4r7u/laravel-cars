@@ -4,7 +4,7 @@
 <div class="container">
     @forelse ($cars as $car)
         <div class="card m-3" style="width: 18rem;">
-            <a href="{{route('cars.show' , ['car' => $car->id])}}">
+            <a href="{{route('admin.cars.show' , ['car' => $car->id])}}">
                 <img src="{{ $car->thumb }}" class="card-img-top" alt="{{ $car->brand }}">
             </a>
             <div class="card-body">
