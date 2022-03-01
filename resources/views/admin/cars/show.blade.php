@@ -11,8 +11,10 @@
             <p class="card-text">Categoria: {{ $car_to_show->category ? $car_to_show->category->name : 'nessuna' }}</p>
             <p class="card-text">Potenza: {{ $car_to_show->power }}</p>
             <p class="card-text">Numero di porte: {{ $car_to_show->doors }}</p>        </div>
-        <a class="btn btn-primary" href="{{ route('admin.cars.edit', ['car'=>$car_to_show->id]) }}">Modifica</a>
-        <form action="{{ route('admin.cars.destroy', ['car'=> $car_to_show->id]) }}" method="post">
+        <div class="mx-3">
+            <a class="btn btn-primary" href="{{ route('admin.cars.edit', ['car'=>$car_to_show->id]) }}">Modifica</a>
+        </div>
+        <form action="{{ route('admin.cars.destroy', ['car'=> $car_to_show->id]) }}" method="post" class="mx-3 my-2">
             @csrf
             @method('DELETE')
 
