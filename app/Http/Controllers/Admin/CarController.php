@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Car;
 use App\Category;
+use App\Optional;
 use App\Http\Controllers\Controller;
 
 class CarController extends Controller
@@ -31,7 +32,9 @@ class CarController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.cars.create', compact('categories'));
+        $optionals = Optional::all();
+
+        return view('admin.cars.create', compact('categories', 'optionals'));
     }
 
     /**
@@ -49,6 +52,12 @@ class CarController extends Controller
        $new_car = new Car();
        $new_car->fill($form_data);
        $new_car->save();
+
+       if ($form_data['optionals']) {
+           $new_car->optionals()->sync($form_data['optionals']);
+       } else {
+            $new_car->optionals()->sync([]);
+       }
 
        return redirect()->route('admin.cars.show', ['car' => $new_car->id]);
     }
@@ -79,8 +88,9 @@ class CarController extends Controller
     {
         $car = Car::findOrFail($id);
         $categories = Category::all();
+        $optionals = Optional::all();
 
-        return view('admin.cars.edit', compact('car', 'categories'));
+        return view('admin.cars.edit', compact('car', 'categories', 'optionals'));
     }
 
     /**
@@ -98,6 +108,12 @@ class CarController extends Controller
         $car_to_update = Car::findOrFail($id);
         $car_to_update->update($form_data);
 
+        if (isset($form_data['optionals'])) {
+            $car_to_update->optionals()->sync($form_data['optionals']);
+        } else {
+             $car_to_update->optionals()->sync([]);
+        }
+
         return redirect()->route('admin.cars.show', ['car'=> $car_to_update->id]);
 
     }
@@ -111,6 +127,9 @@ class CarController extends Controller
     public function destroy($id)
     {
         $car_to_delete = Car::findOrFail($id);
+
+        $car_to_delete->optionals()->sync([]);
+
         $car_to_delete->delete();
 
         return redirect()->route('admin.cars.index');
@@ -124,7 +143,8 @@ class CarController extends Controller
             'power' => 'required|max:50',
             'doors' => 'required',
             'power' => 'required|max:150',
-            'category_id' => 'exists:categories,id|nullable'
+            'category_id' => 'exists:categories,id|nullable',
+            'optionals' => 'exists:optionals,id|nullable'
         ];
     }
 }

@@ -18,4 +18,8 @@ class Car extends Model
     public function category(){
         return $this->belongsTo('App\Category');
     }
+
+    public function optionals() {
+        return $this->belongsToMany('App\Optional');
+    }
 }
