@@ -23,27 +23,42 @@
     
         <div class="form-group">
           <label for="brand">Brand</label>
-          <input type="text" class="form-control" name="brand" id="brand" value="{{ old('brand') ? old('brand') : $car->brand }}">
+          <input type="text" class="form-control" name="brand" id="brand" value="{{ old('brand', $car->brand) }}">
         </div>
     
         <div class="form-group">
             <label for="model">Model</label>
-            <input type="text" class="form-control" name="model" id="model" value="{{ old('model') ? old('model') : $car->model}}">
+            <input type="text" class="form-control" name="model" id="model" value="{{ old('model', $car->model)}}">
         </div>
     
         <div class="form-group">
             <label for="power">Power</label>
-            <input type="text" class="form-control" name="power" id="power" value="{{ old('power') ? old('power') : $car->power }}">
+            <input type="text" class="form-control" name="power" id="power" value="{{ old('power', $car->power) }}">
         </div>
     
         <div class="form-group">
             <label for="doors">Doors</label>
-            <input type="number" class="form-control" name="doors" id="doors"  value="{{ old('doors') ? old('doors') : $car->doors }}">
+            <input type="number" class="form-control" name="doors" id="doors"  value="{{ old('doors', $car->doors) }}">
+        </div>
+
+        {{-- Categories select --}}
+        <div class="form-group">
+            <label for="category_id">Categories</label>
+            <select name="category_id" id="category_id">
+                <option value=""></option>
+                @foreach ($categories as $category)
+                    @if (!$errors->any())
+                        <option value="{{ $category->id }}" {{$car->category_id == $category->id ? 'selected' : ''}}>{{ $category->name }}</option>
+                    @else
+                        <option value="{{ $category->id }}" {{old('category_id') == $category->id ? 'selected' : ''}} >{{ $category->name }}</option>
+                    @endif
+                @endforeach
+            </select>
         </div>
     
         <div class="form-group">
             <label for="thumb">Thumb</label>
-            <input type="text" class="form-control" name="thumb" id="thumb"  value="{{ old('thumb') ? old('thumb') : $car->thumb }}">
+            <input type="text" class="form-control" name="thumb" id="thumb"  value="{{ old('thumb', $car->thumb) }}">
         </div>
         
         <button type="submit" class="btn btn-primary">Aggiorna</button>
