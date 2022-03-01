@@ -40,6 +40,17 @@
             <input type="number" class="form-control" name="doors" id="doors" placeholder="doors" value="{{ old('doors') }}">
         </div>
 
+        {{-- Categories select --}}
+        <div class="form-group">
+            <label for="category_id">Categories</label>
+            <select name="category_id" id="category_id">
+                <option value=""></option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{old('category_id') == $category->id ? 'selected' : ''}} >{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="form-group">
             <label for="thumb">Thumb</label>
             <input type="text" class="form-control" name="thumb" id="thumb" placeholder="thumb" value="{{ old('thumb') }}">
