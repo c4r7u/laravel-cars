@@ -51,6 +51,15 @@
             </select>
         </div>
 
+        {{-- Optionals --}}
+        <h5>Optionals</h5>
+        @foreach ($optionals as $optional)
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{ $optional->id }}" id="optional-{{ $optional->id }}" name="optionals[]">
+                <label class="form-check-label" for="optional-{{ $optional->id }}">{{ $optional->name }}</label>
+            </div>
+        @endforeach
+
         <div class="form-group">
             <label for="thumb">Thumb</label>
             <input type="text" class="form-control" name="thumb" id="thumb" placeholder="thumb" value="{{ old('thumb') }}">
