@@ -31,6 +31,10 @@ export default {
                 {
                     urlName: 'contact-us',
                     label: 'Contact Us'
+                },
+                {
+                    urlName: 'car-list',
+                    label: 'CarList'
                 }
             ]
         }
