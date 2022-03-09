@@ -4,10 +4,6 @@
         <Header />
 
         <router-view></router-view>
-
-        <footer>
-            <h1>Footer</h1>
-        </footer>
     </div>
 
 </template>
