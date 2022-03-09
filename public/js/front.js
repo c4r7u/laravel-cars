@@ -1963,8 +1963,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'CarList'
+  name: 'CarList',
+  data: function data() {
+    return {
+      cars: {}
+    };
+  },
+  methods: {
+    getCars: function getCars() {
+      var _this = this;
+
+      axios.get('/api/cars').then(function (response) {
+        _this.cars = response.data.response;
+      });
+    }
+  },
+  created: function created() {
+    this.getCars();
+  }
 });
 
 /***/ }),
@@ -2616,16 +2647,43 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("section", [
+    _c("h1", [_vm._v("Car List")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row row-cols-3" },
+      _vm._l(_vm.cars, function (car) {
+        return _c("div", { key: car.id, staticClass: "col" }, [
+          _c(
+            "div",
+            { staticClass: "card mb-3", staticStyle: { width: "18rem" } },
+            [
+              _c("img", {
+                staticClass: "card-img-top",
+                attrs: { src: car.thumb, alt: car.brand + " " + car.model },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(car.brand) + "  " + _vm._s(car.model)),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                  [_vm._v("Vai al post")]
+                ),
+              ]),
+            ]
+          ),
+        ])
+      }),
+      0
+    ),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", [_c("h1", [_vm._v("Car List")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -18494,7 +18552,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-projects\laravel-cars\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\Giuseppe\Classe#48\repository\laravel-cars\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
